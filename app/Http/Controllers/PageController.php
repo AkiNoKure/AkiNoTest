@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -116,24 +116,24 @@ class PageController extends Controller
     // Liste
     if ($view === null) {
         $equipes = \App\Models\Equipe::all();
-        return view('equipes.index', compact('equipes'));
+        return view('colleges.equipe', compact('equipes'));
     }
 
     // Create
     if ($view === 'create') {
-        return view('equipes.create');
+        return view('colleges.create_equipe');
     }
 
     // Show
     if ($view === 'show' && $request->id) {
         $equipe = \App\Models\Equipe::findOrFail($request->id);
-        return view('equipes.show', compact('equipe'));
+        return view('colleges.show_equipe', compact('equipe'));
     }
 
     // Edit
     if ($view === 'edit' && $request->id) {
         $equipe = \App\Models\Equipe::findOrFail($request->id);
-        return view('equipes.edit', compact('equipe'));
+        return view('colleges.edit_equipe', compact('equipe'));
     }
 
     abort(404);

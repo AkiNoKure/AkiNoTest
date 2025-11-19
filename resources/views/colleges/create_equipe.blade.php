@@ -1,20 +1,40 @@
 @extends('layouts.default')
 
-@section('contenu')
-<h2>Créer une équipe</h2>
+@section('title', 'Créer une équipe')
 
-<form action="{{ route('equipes.store') }}" method="POST">
-    @csrf
+@section('content')
+<article class="container">
 
-    <label>Code :</label>
-    <input type="text" name="code" required>
+    <header>
+        <h2>Créer une équipe</h2>
+    </header>
 
-    <label>Nom :</label>
-    <input type="text" name="nom" required>
+    <form method="POST" action="/colleges/equipe/store">
+        @csrf
 
-    <label>Site :</label>
-    <input type="text" name="site">
+        <label>
+            Nom de l'équipe
+            <input type="text" name="nom" required>
+        </label>
 
-    <button type="submit">Enregistrer</button>
-</form>
+        <label>
+            Code
+            <input type="text" name="code" required>
+        </label>
+
+        <label>
+            Site
+            <input type="text" name="site">
+        </label>
+
+        <label>
+            Commentaire
+            <textarea name="commentaire"></textarea>
+        </label>
+
+        <button type="submit" class="contrast">Créer</button>
+        <a href="/colleges/equipe" class="button">Annuler</a>
+    </form>
+
+</article>
 @endsection

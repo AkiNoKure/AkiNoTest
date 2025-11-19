@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Base\Equipe as BaseEquipe;
+use Illuminate\Database\Eloquent\Model;
 
-class Equipe extends BaseEquipe
+class Equipe extends Model
 {
-	protected $fillable = [
+    protected $fillable = [
+
 		'code',
 		'nom',
 		'site',

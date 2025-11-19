@@ -1,28 +1,50 @@
 @extends('layouts.default')
 
-@section('contenu')
-<h2>Liste des équipes</h2>
+@section('title', 'Liste des équipes')
 
-<a href="{{ route('equipes.create') }}">Créer une équipe</a>
+@section('content')
+<article class="container">
 
-@if(session('success'))
-    <p>{{ session('success') }}</p>
-@endif
+    <header>
+        <h2>Liste des équipes</h2>
+    </header>
 
-<ul>
-@foreach($equipes as $equipe)
-    <li>
-        {{ $equipe->nom }} (code: {{ $equipe->code }})
+    @if(session('success'))
+        <div class="alert success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-        <a href="{{ route('equipes.show', $equipe) }}">Voir</a>
-        <a href="{{ route('equipes.edit', $equipe) }}">Modifier</a>
+    <p>
+        <a href="/colleges/equipe?view=create" class="button contrast">➕ Créer une équipe</a>
+    </p>
 
-        <form action="{{ route('equipes.destroy', $equipe) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Supprimer</button>
-        </form>
-    </li>
-@endforeach
-</ul>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Code</th>
+                <th style="width: 180px;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        @forelse($equipes as $equipe)
+            <tr>
+                <td>{{ $equipe->nom }}</td>
+                <td>{{ $equipe->code }}</td>
+                <td>
+                    <a class="button small" href="/colleges/equipe?view=show&id={{ $equipe->id }}">Voir</a>
+                    <a class="button small" href="/colleges/equipe?view=edit&id={{ $equipe->id }}">Modifier</a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="3" style="text-align:center;">Aucune équipe enregistrée.</td>
+            </tr>
+        @endforelse
+        </tbody>
+    </table>
+
+</article>
 @endsection
