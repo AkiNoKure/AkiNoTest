@@ -16,7 +16,7 @@
     @endif
 
     <p>
-        <a href="/colleges/equipe?view=create" class="button contrast">➕ Créer une équipe</a>
+        <a href="{{ route('equipes.create') }}" class="button contrast">➕ Créer une équipe</a>
     </p>
 
     <table class="striped">
@@ -24,7 +24,9 @@
             <tr>
                 <th>Nom</th>
                 <th>Code</th>
-                <th style="width: 180px;">Actions</th>
+                <th>Collège</th>
+                <th>Membres</th>
+                <th style="width: 220px;">Actions</th>
             </tr>
         </thead>
 
@@ -33,14 +35,36 @@
             <tr>
                 <td>{{ $equipe->nom }}</td>
                 <td>{{ $equipe->code }}</td>
+                <td>{{ $equipe->college->nom }}</td>
+                <td>{{ $equipe->membres->count() }}/4</td>
+
                 <td>
-                    <a class="button small" href="/colleges/equipe?view=show&id={{ $equipe->id }}">Voir</a>
-                    <a class="button small" href="/colleges/equipe?view=edit&id={{ $equipe->id }}">Modifier</a>
+                    <a class="button small" 
+                       href="{{ route('equipes.show', $equipe) }}">
+                        Voir
+                    </a>
+
+                    <a class="button small" 
+                       href="{{ route('equipes.edit', $equipe) }}">
+                        Modifier
+                    </a>
+
+                    <form action="{{ route('equipes.destroy', $equipe) }}" 
+                          method="POST" 
+                          style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+
+                        <button class="button small" 
+                                onclick="return confirm('Supprimer cette équipe ?')">
+                            Supprimer
+                        </button>
+                    </form>
                 </td>
             </tr>
         @empty
             <tr>
-                <td colspan="3" style="text-align:center;">Aucune équipe enregistrée.</td>
+                <td colspan="5" style="text-align:center;">Aucune équipe enregistrée.</td>
             </tr>
         @endforelse
         </tbody>

@@ -11,6 +11,8 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 // Collèges
 Route::get('/colleges/eleves', [PageController::class, 'eleves'])->name('colleges.eleves');
 Route::get('/colleges/equipe', [PageController::class, 'equipe'])->name('colleges.equipe');
+Route::resource('equipes', EquipeController::class);
+
 
 // Épreuves
 Route::get('/epreuves', [PageController::class, 'epreuves'])->name('epreuves.index');
