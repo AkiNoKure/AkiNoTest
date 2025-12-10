@@ -20,23 +20,23 @@
     <h3>Membres ({{ $equipe->membres->count() }}/4)</h3>
 
     @if($equipe->membres->isEmpty())
-        <p><em>Aucun membre dans cette équipe.</em></p>
+    <p><em>Aucun membre dans cette équipe.</em></p>
     @else
-        <ul>
-            @foreach($equipe->membres as $membre)
-                <li>
-                    {{ $membre->prenom }} {{ $membre->nom }}
-                    ({{ $membre->classe ?? 'classe inconnue' }})
-                </li>
-            @endforeach
-        </ul>
+    <ul>
+        @foreach($equipe->membres as $membre)
+        <li>
+            {{ $membre->prenom }} {{ $membre->nom }}
+            ({{ $membre->classe ?? 'classe inconnue' }})
+        </li>
+        @endforeach
+    </ul>
     @endif
 
     <p>
         <a href="{{ route('equipes.index') }}" class="button">⬅ Retour</a>
 
         <a class="button contrast"
-           href="{{ route('equipes.edit', $equipe) }}">
+            href="{{ route('equipes.edit', $equipe) }}">
             Modifier
         </a>
     </p>

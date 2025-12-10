@@ -16,6 +16,12 @@
             Nom de l'équipe
             <input type="text" name="nom" value="{{ old('nom') }}" required>
         </label>
+        <label for="id_concours">Concours</label>
+        <select name="id_concours" id="id_concours" required>
+            @foreach($concours as $concoursItem)
+            <option value="{{ $concoursItem->id }}">{{ $concoursItem->nom }}</option>
+            @endforeach
+        </select>
 
         {{-- Code généré automatiquement -> affichage seulement --}}
         <label>
@@ -39,7 +45,7 @@
             <select name="id_college" required>
                 <option value="">-- Sélectionner un collège --</option>
                 @foreach($colleges as $college)
-                    <option value="{{ $college->id }}">{{ $college->nom }}</option>
+                <option value="{{ $college->id }}">{{ $college->nom }}</option>
                 @endforeach
             </select>
         </label>
@@ -49,9 +55,9 @@
             Membres de l'équipe (4 max)
             <select name="membres[]" multiple size="5">
                 @foreach($utilisateurs as $u)
-                    <option value="{{ $u->id }}">
-                        {{ $u->prenom }} {{ $u->nom }} — {{ $u->classe }}
-                    </option>
+                <option value="{{ $u->id }}">
+                    {{ $u->prenom }} {{ $u->nom }} — {{ $u->classe }}
+                </option>
                 @endforeach
             </select>
 

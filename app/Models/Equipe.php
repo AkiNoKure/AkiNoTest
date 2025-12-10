@@ -26,4 +26,3 @@ class Equipe extends Model
         return $this->hasMany(McdUtilisateur::class, 'id_equipe');
     }
 }
-

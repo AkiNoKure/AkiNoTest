@@ -5,7 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Models\Utilisateur;
+use App\Models\User;
+use App\Models\Equipe;
+use App\Models\College;
+
 
 class PageController extends Controller
 {
@@ -75,7 +78,7 @@ class PageController extends Controller
     }
     public function abonnement(): View
     {
-        $demandes = Utilisateur::afficher_demandes_abo();
+        $demandes = User::afficher_demandes_abo();
         return view('gestion.abonnement', ['demandes' => $demandes]);
     }
     public function role(): View
@@ -111,13 +114,16 @@ class PageController extends Controller
 
    public function equipe(Request $request)
 {
-    $view = $request->query('view');   // récupère ?view=...
+    $view = $request->query('view');
 
     // Liste
     if ($view === null) {
-        $equipes = \App\Models\Equipe::all();
-        return view('colleges.equipe', compact('equipes'));
+        $equipes = Equipe::with(['college','membres'])->get();
+        $colleges = College::all();
+
+        return view('colleges.equipe', compact('equipes', 'colleges'));
     }
+
 
     // Create
     if ($view === 'create') {

@@ -18,6 +18,12 @@
             <input type="text" name="nom" value="{{ old('nom', $equipe->nom) }}" required>
         </label>
 
+        <label for="id_concours">Concours</label>
+        <select name="id_concours" id="id_concours" required>
+            @foreach($concours as $concoursItem)
+            <option value="{{ $concoursItem->id }}">{{ $concoursItem->nom }}</option>
+            @endforeach
+        </select>
 
 
         <label>
@@ -35,10 +41,10 @@
             Collège
             <select name="id_college" required>
                 @foreach($colleges as $college)
-                    <option value="{{ $college->id }}"
-                        @selected($equipe->id_college == $college->id)>
-                        {{ $college->nom }}
-                    </option>
+                <option value="{{ $college->id }}"
+                    @selected($equipe->id_college == $college->id)>
+                    {{ $college->nom }}
+                </option>
                 @endforeach
             </select>
         </label>
@@ -47,19 +53,19 @@
         <label>
             Membres de l'équipe (4 max)
             <select name="membres[]" multiple size="6">
-                
+
                 {{-- Membres déjà dans l'équipe --}}
                 @foreach($equipe->membres as $m)
-                    <option value="{{ $m->id }}" selected>
-                        {{ $m->prenom }} {{ $m->nom }} — {{ $m->classe }}
-                    </option>
+                <option value="{{ $m->id }}" selected>
+                    {{ $m->prenom }} {{ $m->nom }} — {{ $m->classe }}
+                </option>
                 @endforeach
 
                 {{-- Membres libres --}}
                 @foreach($utilisateursLibres as $u)
-                    <option value="{{ $u->id }}">
-                        {{ $u->prenom }} {{ $u->nom }} — {{ $u->classe }}
-                    </option>
+                <option value="{{ $u->id }}">
+                    {{ $u->prenom }} {{ $u->nom }} — {{ $u->classe }}
+                </option>
                 @endforeach
             </select>
 

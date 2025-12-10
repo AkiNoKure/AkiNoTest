@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\EquipeController;
 use Livewire\Volt\Volt;
 
@@ -15,6 +15,7 @@ Route::get('/colleges/equipe', [PageController::class, 'equipe'])->name('college
 Route::get('/colleges/show_equipe', [PageController::class, 'equipe'])->name('colleges.show_equipe');
 Route::get('/colleges/edit_equipe', [PageController::class, 'equipe'])->name('colleges.edit_equipe');
 Route::get('/colleges/create_equipe', [PageController::class, 'equipe'])->name('colleges.create_equipe');
+
 
 Route::resource('equipes', EquipeController::class);
 
@@ -65,4 +66,4 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
