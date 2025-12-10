@@ -6,7 +6,7 @@ use App\Models\Base\McdUtilisateur as BaseMcdUtilisateur;
 
 class McdUtilisateur extends BaseMcdUtilisateur
 {
-    protected $table = 'mcd_utilisateurs';
+    protected $table = 'utilisateurs';
 
     protected $fillable = [
         'nom',

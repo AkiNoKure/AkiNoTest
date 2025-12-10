@@ -3,14 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EquipeController;
 use Livewire\Volt\Volt;
 
 // Accueil
 Route::get('/', [PageController::class, 'home'])->name('home');
-
+Route::get('/equipe', [EquipeController::class, 'index']);
 // Collèges
 Route::get('/colleges/eleves', [PageController::class, 'eleves'])->name('colleges.eleves');
 Route::get('/colleges/equipe', [PageController::class, 'equipe'])->name('colleges.equipe');
+Route::get('/colleges/show_equipe', [PageController::class, 'equipe'])->name('colleges.show_equipe');
+Route::get('/colleges/edit_equipe', [PageController::class, 'equipe'])->name('colleges.edit_equipe');
+Route::get('/colleges/create_equipe', [PageController::class, 'equipe'])->name('colleges.create_equipe');
+
 Route::resource('equipes', EquipeController::class);
 
 
@@ -51,7 +56,6 @@ Volt::route('register', 'pages.auth.register')->name('register');
 Volt::route('logout', 'pages.auth.logout')->name('logout');
 
 
-Route::resource('users', UserController::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

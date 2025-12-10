@@ -1,12 +1,5 @@
 <?php
 
-use App\Livewire\Actions\Logout;
-use function Livewire\Volt\action;
-
-$logout = action(function (Logout $logoutAction) {
-    $logoutAction();
-    $this->redirect('/', navigate: true);
-});
 ?>
 <nav class="navbar">
     <div class="navbar-brand">
@@ -96,7 +89,7 @@ $logout = action(function (Logout $logoutAction) {
 
         <!-- Déconnexion -->
         <li>
-        @livewire('layout.navigation')
+        @livewire('logout-button')
         </li>
         @endguest
     </ul>

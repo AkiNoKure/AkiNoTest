@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipe extends Model
 {
-    protected $table = 'mcd_equipes';
+    protected $table = 'equipes';
     protected $fillable = [
         'code',
         'nom',
@@ -23,7 +23,7 @@ class Equipe extends Model
 
     public function membres()
     {
-        return $this->hasMany(Utilisateur::class, 'id_equipe');
+        return $this->hasMany(McdUtilisateur::class, 'id_equipe');
     }
 }
 

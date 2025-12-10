@@ -17,9 +17,10 @@
             <input type="text" name="nom" value="{{ old('nom') }}" required>
         </label>
 
+        {{-- Code généré automatiquement -> affichage seulement --}}
         <label>
-            Code
-            <input type="text" name="code" value="{{ old('code') }}" required>
+            Code (sera généré automatiquement)
+            <input type="text" value="Généré automatiquement" disabled>
         </label>
 
         <label>

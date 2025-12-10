@@ -18,10 +18,7 @@
             <input type="text" name="nom" value="{{ old('nom', $equipe->nom) }}" required>
         </label>
 
-        <label>
-            Code
-            <input type="text" name="code" value="{{ old('code', $equipe->code) }}" required>
-        </label>
+
 
         <label>
             Site
