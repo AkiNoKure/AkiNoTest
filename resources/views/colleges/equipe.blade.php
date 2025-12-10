@@ -25,11 +25,11 @@
             value="{{ request('q') }}" />
 
         <!-- Filtre par collège -->
-        <select name="college_id">
+        <select name="id_college">
             <option value="">Tous les collèges</option>
             @foreach($colleges as $college)
             <option value="{{ $college->id }}"
-                {{ request('college_id') == $college->id ? 'selected' : '' }}>
+                {{ request('id_college') == $college->id ? 'selected' : '' }}>
                 {{ $college->nom }}
             </option>
             @endforeach

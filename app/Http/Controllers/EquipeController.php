@@ -18,8 +18,8 @@ class EquipeController extends Controller
             $query->where('nom', 'LIKE', "%{$request->q}%");
         }
 
-        if ($request->filled('college_id')) {
-            $query->where('college_id', $request->college_id);
+        if ($request->filled('id_college')) {
+            $query->where('id_college', $request->id_college);
         }
 
         if ($request->filled('membres')) {
